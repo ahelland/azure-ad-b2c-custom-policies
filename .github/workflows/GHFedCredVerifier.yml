@@ -35,5 +35,5 @@ jobs:
     - name: Show that the Action works
       shell: pwsh
       run: |
-          Get-Module -Name Microsoft.Graph.Identity.SignIns -ListAvailable | Select Path
+          Get-MgTrustFrameworkPolicy
     
