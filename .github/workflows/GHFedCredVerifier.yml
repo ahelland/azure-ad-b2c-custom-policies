@@ -29,6 +29,6 @@ jobs:
       uses: azure/powershell@v1
       with:
         inlineScript: |
-          Install-Module AzureADPreview
-          Get-AzureADMSTrustFrameworkPolicy
-        azPSVersion: "5.1.22000.653"
+          Import-Module Microsoft.Graph.Identity.SignIns
+          Get-MgTrustFrameworkPolicy
+        azPSVersion: "latest"
