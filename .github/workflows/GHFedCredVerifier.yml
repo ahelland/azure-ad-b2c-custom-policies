@@ -31,4 +31,4 @@ jobs:
         inlineScript: |
           Install-Module AzureADPreview
           Get-AzureADMSTrustFrameworkPolicy
-        azPSVersion: "5.1"
+        azPSVersion: "5.1.22000.653"
