@@ -25,17 +25,15 @@ jobs:
           subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
           allow-no-subscriptions: true
           enable-AzPSSession: true
-  
-    - name: 'Install Module'
-      uses: azure/powershell@v1
+          
+    - name: Install and cache PowerShell modules
+      id: psmodulecache
+      uses: potatoqualitee/psmodulecache@v4.5
       with:
-        inlineScript: |
-          Install-Module -Name Microsoft.Graph.Identity.SignIns -Repository PSGallery          
-        azPSVersion: "latest"
+        modules-to-cache: Microsoft.Graph.Identity.SignIns
         
-    - name: 'List Custom Policies'
-      uses: azure/powershell@v1
-      with:
-        inlineScript: |
-          Get-MgTrustFrameworkPolicy -All
-        azPSVersion: "latest"
+    - name: Show that the Action works
+      shell: pwsh
+      run: |
+          Get-Module -Name Microsoft.Graph.Identity.SignIns -ListAvailable | Select Path
+    
