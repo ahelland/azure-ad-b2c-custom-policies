@@ -30,7 +30,5 @@ jobs:
       uses: azure/powershell@v1
       with:
         inlineScript: |
-          Install-Module -Name Microsoft.Graph.Identity.SignIns
-          Import-Module Microsoft.Graph.Identity.SignIns
-          Get-MgTrustFrameworkPolicy
+          Install-Module -Name Microsoft.Graph.Identity.SignIns -Repository PSGallery          
         azPSVersion: "latest"
