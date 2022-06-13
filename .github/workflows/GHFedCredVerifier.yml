@@ -26,9 +26,16 @@ jobs:
           allow-no-subscriptions: true
           enable-AzPSSession: true
   
-    - name: 'List Custom Policies'
+    - name: 'Install Module'
       uses: azure/powershell@v1
       with:
         inlineScript: |
           Install-Module -Name Microsoft.Graph.Identity.SignIns -Repository PSGallery          
+        azPSVersion: "latest"
+        
+    - name: 'List Custom Policies'
+      uses: azure/powershell@v1
+      with:
+        inlineScript: |
+          Get-MgTrustFrameworkPolicy -All
         azPSVersion: "latest"
