@@ -41,5 +41,5 @@ jobs:
           Select-MgProfile -Name "beta"
           Connect-MgGraph -AccessToken $token.Token
           Set-MgTrustFrameworkPolicyContent -TrustFrameworkPolicyId "B2C_1A_TrustFrameworkBase_GitHub" -InFile "./policies/TrustFrameworkBase.xml"
-          Set-MgTrustFrameworkPolicyContent -TrustFrameworkPolicyId "B2C_1A_TrustFrameworkLocalization_GitHub" -InFile "./policies/TrustFrameworkLOcalization.xml"
+          Set-MgTrustFrameworkPolicyContent -TrustFrameworkPolicyId "B2C_1A_TrustFrameworkLocalization_GitHub" -InFile "./policies/TrustFrameworkLocalization.xml"
         azPSVersion: "latest"  
