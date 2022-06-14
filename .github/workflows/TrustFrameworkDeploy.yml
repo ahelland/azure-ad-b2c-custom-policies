@@ -45,5 +45,5 @@ jobs:
           Set-MgTrustFrameworkPolicyContent -TrustFrameworkPolicyId "B2C_1A_TrustFrameworkBase_GitHub" -InFile "./policies/TrustFrameworkBase.xml"
           Set-MgTrustFrameworkPolicyContent -TrustFrameworkPolicyId "B2C_1A_TrustFrameworkLocalization_GitHub" -InFile "./policies/TrustFrameworkLocalization.xml"
           Set-MgTrustFrameworkPolicyContent -TrustFrameworkPolicyId "B2C_1A_TrustFrameworkExtensions_GitHub" -InFile "./policies/TrustFrameworkExtensions.xml"
-          Set-MgTrustFrameworkPolicyContent -TrustFrameworkPolicyId "B2C_1A_SignUpOrSignin_GitHub" -InFile "./policies/SignUpOrSignin.xml"
+          Set-MgTrustFrameworkPolicyContent -TrustFrameworkPolicyId "B2C_1A_Signup_Signin_GitHub" -InFile "./policies/SignUpOrSignin.xml"
         azPSVersion: "latest"  
