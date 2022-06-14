@@ -29,8 +29,10 @@ jobs:
     - name: 'List Custom Policies'
       uses: azure/powershell@v1
       with:
-        inlineScript: |    
+        inlineScript: |
+          $token = Get-AzAccessToken -ResourceUrl "https://graph.microsoft.com/"
           Install-Module -Name Microsoft.Graph.Identity.SignIns
           Select-MgProfile -Name "beta"
+          Connect-MgGraph -AccessToken $token.Token
           Get-MgTrustFrameworkPolicy
         azPSVersion: "latest"    
