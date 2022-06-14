@@ -33,4 +33,4 @@ jobs:
           Install-Module -Name Microsoft.Graph.Identity.SignIns
           Select-MgProfile -Name "beta"
           Get-MgTrustFrameworkPolicy
-    
+        azPSVersion: "latest"    
