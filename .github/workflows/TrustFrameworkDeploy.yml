@@ -1,0 +1,42 @@
+name: Deploy TrustFramework Policies
+#on: [push]
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Environment to deploy to'
+        type: environment
+        required: true
+  
+permissions:
+      id-token: write
+      contents: read
+      
+jobs: 
+  deploy:
+    runs-on: ubuntu-latest
+    environment: ${{ github.event.inputs.environment }}
+    steps:
+    - name: 'Az CLI login'
+      uses: azure/login@v1
+      with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          allow-no-subscriptions: true
+          enable-AzPSSession: true
+
+    - name: Replace placeholder values
+      run: |
+        sed -i 's|${B2C_TENANT_NAME}|${{ secrets.B2C_TENANT_NAME }}|g' ./policies/TrustFrameworkBase.xml
+        
+    - name: 'Upload Custom Policies'
+      uses: azure/powershell@v1
+      with:
+        inlineScript: |
+          $token = Get-AzAccessToken -ResourceUrl "https://graph.microsoft.com/"
+          Install-Module -Name Microsoft.Graph.Identity.SignIns
+          Select-MgProfile -Name "beta"
+          Connect-MgGraph -AccessToken $token.Token
+          Set-MgTrustFrameworkPolicyContent -TrustFrameworkPolicyId "B2C_1A_TrustFrameworkBase_GitHub" -InFile "./policies/TrustFrameworkBase.xml"
+          New-MgTrustFrameworkPolicy -Id "B2C_1A_TrustFrameworkBase_GitHub"
+        azPSVersion: "latest"  
